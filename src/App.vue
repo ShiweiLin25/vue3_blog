@@ -3,7 +3,7 @@
   <div class="navbar bg-neutral text-neutral-content">
     <div class="flex-1">
       <!-- 左側標題，點擊後返回首頁 -->
-      <a class="btn btn-ghost text-xl" href="/">MY BLOG</a>
+      <router-link class="btn btn-ghost text-xl" to="/">MY BLOG</router-link>
     </div>
     <div class="flex-none">
       <!-- 右側按鈕，點擊後跳轉到 "/post" 頁面 -->

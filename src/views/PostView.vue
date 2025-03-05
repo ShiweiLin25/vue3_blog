@@ -1,5 +1,5 @@
 <template>
-    <div class="my-8 container mx-auto px-40">
+    <div class="my-8 container mx-auto px-5">
         <!-- QuillEditor 富文本編輯器，綁定 text 變數作為內容，格式為 HTML -->
         <QuillEditor theme="snow" class="w-full" v-model:content="text" contentType="html" />
 
@@ -40,7 +40,6 @@ export default {
             }
         });
 
-        // 儲存文章到 Parse 資料庫
         async function save() {
             // 若 ID 為空，表示是新增文章
             if (!id.value) {
@@ -68,6 +67,8 @@ export default {
                     const blog = await query.first();
                     // 更新內容
                     blog.set('text', text.value);
+                    // 更新修改時間為當前時間
+                    blog.set('updatedAt', new Date());  // 更新時間
                     // 儲存變更
                     await blog.save();
                     // 更新成功後跳轉回首頁
@@ -78,7 +79,6 @@ export default {
                 }
             }
         }
-
         // 讀取文章內容
         async function get() {
             const query = new Parse.Query("Blog");
